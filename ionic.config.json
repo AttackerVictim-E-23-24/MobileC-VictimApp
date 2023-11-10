@@ -1,0 +1,7 @@
+{
+  "name": "MobileC-VictimApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
