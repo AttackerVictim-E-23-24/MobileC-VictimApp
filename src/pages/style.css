@@ -1,0 +1,8 @@
+.component-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta esto según tus necesidades */
+    border-radius: 15px; /* Ajusta esto según tus necesidades */
+    overflow: hidden; /* Esto es para asegurar que el mapa también tenga bordes redondeados */
+}
