@@ -14,7 +14,7 @@ const Login: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Attacker App</IonTitle>
+          <IonTitle>Victim App</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
