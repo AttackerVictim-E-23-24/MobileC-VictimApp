@@ -2,6 +2,7 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHe
 import MonitoringView from '../View/MonitoringView';
 import GeolocationView from '../View/GeolocationView';
 import MotionView from '../View/MotionView';
+import MyMap from '../View/GoogleMapsView';
 
 const Tab1: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const Tab1: React.FC = () => {
             
           </IonCardContent>
         </IonCard>
+        <MyMap/>
 
       </IonContent>
     </IonPage>
