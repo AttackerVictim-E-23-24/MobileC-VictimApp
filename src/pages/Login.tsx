@@ -1,24 +1,27 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import Login from '../View/LoginView';
+// Login.tsx
 
-const Tab1: React.FC = () => {
+import React from 'react';
+import {
+  IonPage,
+  IonContent,
+  IonHeader, IonTitle, IonToolbar
+} from '@ionic/react';
+import LoginView from '../View/LoginView';
+
+const Login: React.FC = () => {
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>login</IonTitle>
+          <IonTitle>Attacker App</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Login</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <Login/>
+      <IonContent className="ion-padding">
+        <LoginView/>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab1;
+export default Login;
