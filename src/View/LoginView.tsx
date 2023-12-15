@@ -2,8 +2,6 @@
 
 import React from 'react';
 import {
-  IonPage,
-  IonContent,
   IonInput,
   IonButton,
   IonCard,
@@ -13,7 +11,7 @@ import {
 } from '@ionic/react';
 import useLoginViewModel from '../ViewModel/LoginViewModel';
 
-const Login: React.FC = () => {
+const LoginView: React.FC = () => {
   const {
     username,
     password,
@@ -25,8 +23,6 @@ const Login: React.FC = () => {
   } = useLoginViewModel();
 
   return (
-    <IonPage>
-      <IonContent className="ion-padding">
         <IonCard>
           <IonCardContent>
             <form onSubmit={(e) => e.preventDefault()}>
@@ -53,9 +49,7 @@ const Login: React.FC = () => {
             </form>
           </IonCardContent>
         </IonCard>
-      </IonContent>
-    </IonPage>
   );
 };
 
-export default Login;
+export default LoginView;

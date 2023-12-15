@@ -1,30 +1,25 @@
-// authApi.ts
-/*
-const baseUrl = 'https://tu-api.com/auth';
+import axios from 'axios';
+import { BaseURL } from './BaseURL';
 
-export const requestLogin = async (username: string, password: string) => {
-  const response = await fetch(`${baseUrl}/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ username, password }),
-  });
+export class LoginRemote {
+    private baseUrl: string;
 
-  if (!response.ok) {
-    throw new Error('Error de red o del servidor');
-  }
+    constructor() {
+        this.baseUrl = BaseURL.baseUrl;
+    }
 
-  const data = await response.json();
-  return data;
-};*/
+    public async requestLogin(username: string, password: string) {
+        try {
+            const response = await axios.post(`${this.baseUrl}/Login`, { username, password },{timeout: 5000});
 
-export const requestLogin = async (username: string, password: string) => {
-    // Simulate a delay of 2 seconds
-    return new Promise(resolve => setTimeout(() => {
-      resolve({
-        status: 200,
-        json: () => Promise.resolve({ authenticated: true }),
-      });
-    }, 2000));
-};
+            return response.data;
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error.code === 'ECONNABORTED') {
+                    throw { code: 'TIMEOUT_ERROR', message: 'La solicitud tardó demasiado tiempo, por favor verifica tu conexión a internet' };
+                }
+            }
+            throw new Error('Error de red o del servidor');
+        }
+    }
+}
