@@ -1,4 +1,4 @@
-import { Geolocation } from '@capacitor/geolocation';
+import { Geolocation, Position } from '@capacitor/geolocation';
 import { GeolocationModel } from '../Model/GeolocationModel';
 import { GeolocationRemote } from '../Remote/GeolocationRemote';
 import { GeolocationLocal } from '../Local/GeolocationLocal';
@@ -18,6 +18,14 @@ export class GeolocationRepository{
         this.geolocationModel.setLongitude(coordinates.coords.longitude);
         this.geolocationModel.setAccuracy(coordinates.coords.accuracy);
         this.geolocationModel.setTimestamp(new Date(coordinates.timestamp));
+    }
+    
+    async getCurrentPosition(): Promise<{ latitude: number, longitude: number }> {
+        const coordinates: Position = await Geolocation.getCurrentPosition();
+        return {
+          latitude: coordinates.coords.latitude,
+          longitude: coordinates.coords.longitude
+        };
     }
 
     async sendData(): Promise<any> {
