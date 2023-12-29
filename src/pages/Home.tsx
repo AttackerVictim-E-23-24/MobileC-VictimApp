@@ -6,8 +6,10 @@ import {  IonHeader,  IonTitle, IonToolbar,
   IonCardContent,
   IonCardTitle,} from '@ionic/react';
 import './css/Home.css';
-import MonitoringView from '../View/MonitoringView';
   
+import MonitoringView from '../View/MonitoringView';
+import GeolocationView from '../View/GeolocationView';
+import MotionView from '../View/MotionView';
 import NetworkView from '../View/NetworkView'; // Importa NetworkView
 
 const Home: React.FC = () => {
@@ -22,17 +24,20 @@ const Home: React.FC = () => {
       <IonContent fullscreen >
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Attacker App</IonTitle>
+            <IonTitle size="large">Victim App</IonTitle>
           </IonToolbar>
         </IonHeader>
 
         <MonitoringView/>
+
         
         <IonCard>
           <IonCardHeader>
-              <IonCardTitle>Último envío de ubicación</IonCardTitle>
+              <IonCardTitle>Título de la Tarjeta</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>
+          <IonCardContent>              
+            <GeolocationView/>
+            <MotionView/>
             <NetworkView/>
           </IonCardContent>
         </IonCard>

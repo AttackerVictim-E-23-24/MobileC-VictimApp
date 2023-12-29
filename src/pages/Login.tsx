@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   IonPage,
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
-import LoginView from "../View/LoginView";
-import ChangePasswordView from "../View/ChangePasswordView"; // Importa ChangePasswordView
+  IonHeader, IonTitle, IonToolbar
+} from '@ionic/react';
+import LoginView from '../View/LoginView';
+import ChangePasswordView from '../View/ChangePasswordView'; // Importa ChangePasswordView
 
 const Login: React.FC = () => {
   const [isLoginView, setIsLoginView] = useState(true);
@@ -24,15 +22,9 @@ const Login: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        {isLoginView ? (
-          <LoginView />
-        ) : (
-          <ChangePasswordView onPasswordChanged={handlePasswordChanged} />
-        )}
+        {isLoginView ? <LoginView/> : <ChangePasswordView onPasswordChanged={handlePasswordChanged}/>}
         <p onClick={() => setIsLoginView(!isLoginView)}>
-          {isLoginView
-            ? "Cambiar a vista de cambio de contraseña"
-            : "Cambiar a vista de login"}
+          {isLoginView ? 'Cambiar a vista de cambio de contraseña' : 'Cambiar a vista de login'}
         </p>
       </IonContent>
     </IonPage>
