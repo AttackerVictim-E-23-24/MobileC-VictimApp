@@ -1,16 +1,6 @@
-import {  IonHeader,  IonTitle, IonToolbar, 
-  IonPage,
-  IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardContent,
-  IonCardTitle,} from '@ionic/react';
-import './css/Home.css';
-  
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import MonitoringView from '../View/MonitoringView';
 import GeolocationView from '../View/GeolocationView';
-import MotionView from '../View/MotionView';
-import NetworkView from '../View/NetworkView'; // Importa NetworkView
 
 const Home: React.FC = () => {
 
@@ -18,7 +8,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Attacker App</IonTitle>
+          <IonTitle>Victim App</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen >
@@ -29,16 +19,15 @@ const Home: React.FC = () => {
         </IonHeader>
 
         <MonitoringView/>
-
         
         <IonCard>
           <IonCardHeader>
               <IonCardTitle>Título de la Tarjeta</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>              
+          <IonCardContent>   
+                       
             <GeolocationView/>
-            <MotionView/>
-            <NetworkView/>
+            
           </IonCardContent>
         </IonCard>
 
