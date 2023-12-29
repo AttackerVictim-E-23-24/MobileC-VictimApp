@@ -1,10 +1,22 @@
 import axios from 'axios';
 import { BaseURL } from './BaseURL';
+import { LoginModel } from '../Model/LoginModel';
 
 export class GeolocationRemote {
-  async sendData(latitude: number, longitude: number, accuracy: number, timeStamp: Date) {
+  async sendData(geolocationList: { latitude: number; longitude: number; currentTime: string }[]) {
+    const username = LoginModel.getInstance().getUsername();
+
     try {
-      const response = await axios.post(`${BaseURL.baseUrl}/Geolocation`, { latitude, longitude, accuracy, timeStamp });
+      const data = {
+        username,
+        geolocation: geolocationList.map(geo => ({
+          latitud: geo.latitude,
+          longitud: geo.longitude,
+          currentTime: geo.currentTime
+        }))
+      };
+
+      const response = await axios.post(`${BaseURL.baseUrl}/users/setGeolocation`, data, { timeout: 5000 });
 
       return response.data;
     } catch (error) {
