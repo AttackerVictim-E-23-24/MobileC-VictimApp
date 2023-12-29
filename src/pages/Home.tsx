@@ -6,6 +6,7 @@ import {  IonHeader,  IonTitle, IonToolbar,
   IonCardContent,
   IonCardTitle,} from '@ionic/react';
 import './css/Home.css';
+import MonitoringView from '../View/MonitoringView';
   
 import NetworkView from '../View/NetworkView'; // Importa NetworkView
 
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
+        <MonitoringView/>
         
         <IonCard>
           <IonCardHeader>
