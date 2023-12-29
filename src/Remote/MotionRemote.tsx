@@ -1,16 +1,21 @@
 import axios from 'axios';
 import { BaseURL } from './BaseURL';
+import { LoginModel } from '../Model/LoginModel';
 
 export class MotionRemote {
-    private baseUrl: string;
 
-    constructor() {
-        this.baseUrl = BaseURL.baseUrl;
-    }
 
-    public async sendMotion(isMoving: boolean, timeStamp: Date) {
+    public async sendMotion(motionList: { isMoving: boolean; timestamp: Date }[]) {
+        const username = LoginModel.getInstance().getUsername();
+
         try {
-            const response = await axios.post(`${this.baseUrl}/Motion`, { isMoving, timeStamp },{timeout: 5000});
+            const response = await axios.post(`${BaseURL.baseUrl}/users/setMovimiento`, {
+                username: username,
+                movimiento: motionList.map(motion => ({
+                    isMoving: motion.isMoving,
+                    currenTime: motion.timestamp
+                }))
+            },{timeout: 5000});
 
             return response.data;
         } catch (error) {
