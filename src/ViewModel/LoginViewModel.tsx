@@ -20,7 +20,7 @@ const useLoginViewModel = () => {
       const result = await loginRepository.login(username, password);
 
       // Manejar el resultado, por ejemplo, redirigir a la página de inicio si es exitoso
-      if (result.respuesta === true) {
+      if (result.authenticated) {
         history.push('/home');
       } else {
         setError(result.message);

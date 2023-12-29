@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
 import { MotionRepository } from '../Repository/MotionRepository';
-import { MonitoringModel } from '../Model/MonitoringModel';
+import { MonitoringRepository } from '../Repository/MonitoringRepository';
 
 const useMotionViewModel = () => {
   const [isMoving, setIsMoving] = useState<boolean>(false);
-  const [displayIsMoving, setDisplayIsMoving] = useState<boolean>(false);
   const motionRepository = new MotionRepository();
-  const monitoringModel = MonitoringModel.getInstance();
+  const monitoringRepository = new MonitoringRepository();
 
   const startListening = () => {
     motionRepository.startListening((isMoving: boolean) => {
       setIsMoving(isMoving);
+      if (isMoving) {
+        setTimeout(() => {
+          setIsMoving(false);
+        }, 5000);
+      }
     });
   };
 
@@ -20,29 +24,19 @@ const useMotionViewModel = () => {
 
   useEffect(() => {
     startListening();
-    const frequency = monitoringModel.getFrecuency() * 1000; // Convert frequency from seconds to milliseconds
+    const frequency = monitoringRepository.getFrecuency();
     const intervalId = setInterval(() => {
       motionRepository.sendData(isMoving, new Date());
-    }, frequency );
+    }, frequency ); // Convert frequency from seconds to milliseconds
 
     return () => {
       stopListening();
       clearInterval(intervalId);
     };
-  }, [monitoringModel.getFrecuency()]);
-
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      setDisplayIsMoving(isMoving);
-    }, 1000); // Update displayIsMoving every 5 seconds
-
-    return () => {
-      clearInterval(timerId);
-    };
-  }, [isMoving]);
+  }, []);
 
   return {
-    isMoving: displayIsMoving,
+    isMoving,
     startListening,
     stopListening,
   };

@@ -1,28 +1,20 @@
-import {  IonHeader,  IonTitle, IonToolbar, 
-  IonPage,
-  IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardContent,
-  IonCardTitle,} from '@ionic/react';
-import './css/Home.css';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import MonitoringView from '../View/MonitoringView';
-  
-import NetworkView from '../View/NetworkView'; // Importa NetworkView
+import GeolocationView from '../View/GeolocationView';
+import MotionView from '../View/MotionView';
 
-const Home: React.FC = () => {
-
+const Tab1: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Attacker App</IonTitle>
+          <IonTitle>Victim App</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen >
+      <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Attacker App</IonTitle>
+            <IonTitle size="large">Tab 1</IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -30,10 +22,13 @@ const Home: React.FC = () => {
         
         <IonCard>
           <IonCardHeader>
-              <IonCardTitle>Último envío de ubicación</IonCardTitle>
+              <IonCardTitle>Título de la Tarjeta</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>
-            <NetworkView/>
+          <IonCardContent>   
+                       
+            <GeolocationView/>
+            <MotionView/>
+            
           </IonCardContent>
         </IonCard>
 
@@ -42,4 +37,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Tab1;

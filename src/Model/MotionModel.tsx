@@ -1,25 +1,23 @@
 export class MotionModel {
-    private movement: { x: number, y: number, z: number };
-    private timestamp: Date;
+    private acceleration: { x: number, y: number, z: number };
+    private timestamp: Date|false;
 
     constructor() {
-        this.movement = { x: 0, y: 0, z: 0 };
-        this.timestamp = new Date();
+        this.acceleration = { x: 0, y: 0, z: 0 };
+        this.timestamp = false;
     }
 
-    getMovement() { 
-        return this.movement;
+    getAcceleration() { 
+        return this.acceleration;
     }
 
     getTimestamp() {
         return this.timestamp;
     }
 
-    setMovement(alpha: number, beta: number, gamma: number) {
-        this.movement.x = alpha;
-        this.movement.y = beta;
-        this.movement.z = gamma;
-      }
+    setAcceleration(acceleration: { x: number, y: number, z: number }) {
+        this.acceleration = acceleration;
+    }
 
     setTimestamp() {
         this.timestamp = new Date();
@@ -35,7 +33,7 @@ export class MotionModel {
     }
 
     isMoving() {
-        return this.movement.x > 0 || this.movement.y > 0 || this.movement.z > 0;
+        return this.acceleration.x > 0 || this.acceleration.y > 0 || this.acceleration.z > 0;
     }    
 
 }
