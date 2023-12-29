@@ -1,6 +1,6 @@
 // Login.tsx
 
-import React from 'react';
+import React from "react";
 import {
   IonInput,
   IonButton,
@@ -8,8 +8,9 @@ import {
   IonCardContent,
   IonLabel,
   IonItem,
-} from '@ionic/react';
-import useLoginViewModel from '../ViewModel/LoginViewModel';
+  IonCardTitle,
+} from "@ionic/react";
+import useLoginViewModel from "../ViewModel/LoginViewModel";
 
 const LoginView: React.FC = () => {
   const {
@@ -23,32 +24,35 @@ const LoginView: React.FC = () => {
   } = useLoginViewModel();
 
   return (
-        <IonCard>
-          <IonCardContent>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <IonItem>
-                <IonLabel position="floating">Usuario</IonLabel>
-                <IonInput
-                  type="text"
-                  value={username}
-                  onIonChange={(e) => setUsername(e.detail.value!)}
-                />
-              </IonItem>
-              <IonItem>
-                <IonLabel position="floating">Contraseña</IonLabel>
-                <IonInput
-                  type="password"
-                  value={password}
-                  onIonChange={(e) => setPassword(e.detail.value!)}
-                />
-              </IonItem>
-              <IonButton expand="full" onClick={login} disabled={isLoading}>
-                {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-              </IonButton>
-              {error && <div>{error}</div>}
-            </form>
-          </IonCardContent>
-        </IonCard>
+    <IonCard>
+      <IonCardTitle>
+        <h1 style={{ margin: "10px" }}>Iniciar Sesión</h1>
+      </IonCardTitle>
+      <IonCardContent>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <IonItem>
+            <IonLabel position="floating">Usuario</IonLabel>
+            <IonInput
+              type="text"
+              value={username}
+              onIonChange={(e) => setUsername(e.detail.value!)}
+            />
+          </IonItem>
+          <IonItem>
+            <IonLabel position="floating">Contraseña</IonLabel>
+            <IonInput
+              type="password"
+              value={password}
+              onIonChange={(e) => setPassword(e.detail.value!)}
+            />
+          </IonItem>
+          <IonButton expand="full" onClick={login} disabled={isLoading}>
+            {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
+          </IonButton>
+          {error && <div>{error}</div>}
+        </form>
+      </IonCardContent>
+    </IonCard>
   );
 };
 
