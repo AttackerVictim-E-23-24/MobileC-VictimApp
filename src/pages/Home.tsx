@@ -1,6 +1,8 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import MonitoringView from '../View/MonitoringView';
 import GeolocationView from '../View/GeolocationView';
+import MotionView from '../View/MotionView';
+import NetworkView from '../View/NetworkView'; // Importa NetworkView
 
 const Home: React.FC = () => {
 
@@ -19,15 +21,16 @@ const Home: React.FC = () => {
         </IonHeader>
 
         <MonitoringView/>
+
         
         <IonCard>
           <IonCardHeader>
-              <IonCardTitle>Título de la Tarjeta</IonCardTitle>
+              <IonCardTitle>Último envío de datos</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>   
-                       
+          <IonCardContent>              
             <GeolocationView/>
-            
+            <MotionView/>
+            <NetworkView/>
           </IonCardContent>
         </IonCard>
 
