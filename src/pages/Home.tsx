@@ -19,6 +19,8 @@ const Home: React.FC = () => {
             <IonTitle size="large">Victim App</IonTitle>
           </IonToolbar>
         </IonHeader>
+        
+        <NotificationView/>
 
         <MonitoringView/>
 

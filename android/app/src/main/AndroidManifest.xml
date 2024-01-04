@@ -33,7 +33,12 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
-            <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCccZNiLlQVuUUN__qwtUC5GdpJveXQ1s8"/>
+
+            <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@mipmap/ic_launcher" />
+
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_channel_id"
+                android:value="@string/gcm_defaultSenderId" />
         </provider>
     </application>
 
