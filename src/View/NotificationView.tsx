@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { useNotificationViewModel } from "../ViewModel/NotificationViewModel";
 
 const NotificationView: React.FC = () => {
-  const notification = useNotificationViewModel();
+  const { notification, token } = useNotificationViewModel();
 
   return (
     <div>
@@ -11,6 +10,7 @@ const NotificationView: React.FC = () => {
         <div>
           <h1>{notification.title}</h1>
           <p>{notification.body}</p>
+          <p>Token: {token}</p>
         </div>
       ) : (
         <p>No notifications</p>

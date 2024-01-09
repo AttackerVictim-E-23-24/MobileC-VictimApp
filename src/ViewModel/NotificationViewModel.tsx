@@ -5,11 +5,13 @@ import { NotificationModel } from '../Model/NotificationModel';
 export const useNotificationViewModel = () => {
   const [notification, setNotification] = useState<NotificationModel | null>(null);
   const notificationRepository = new NotificationRepository();
+  const notificationModel = NotificationModel.getInstance();
 
   useEffect(() => {
     const registerNotifications = async () => {
       try {
         await notificationRepository.registerNotifications();
+        setNotification(notificationModel);
       } catch (error) {
         console.error(error);
       }
@@ -28,5 +30,5 @@ export const useNotificationViewModel = () => {
     getDeliveredNotification();
   }, [notificationRepository]);
 
-  return notification;
+  return { notification, token: notificationModel.token };
 };

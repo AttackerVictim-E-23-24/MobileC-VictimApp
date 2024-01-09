@@ -2,6 +2,12 @@ import { PushNotifications, PushNotificationSchema } from "@capacitor/push-notif
 import { NotificationModel } from "../Model/NotificationModel";
 
 export class NotificationRepository {
+  private notificationModel: NotificationModel;
+
+  constructor() {
+    this.notificationModel = NotificationModel.getInstance();
+  }
+
   async registerNotifications(): Promise<void> {
     let permStatus = await PushNotifications.checkPermissions();
 
@@ -29,7 +35,8 @@ export class NotificationRepository {
   async addListeners(): Promise<void> {
     // Listener for registration
     await PushNotifications.addListener("registration", (token) => {
-      console.info("PushNotifications registration successful", token);
+      this.notificationModel.setToken(token.value);
+      console.log("PushNotifications registration successful", token);
     });
 
     // Listener for registration errors
@@ -63,6 +70,8 @@ export class NotificationRepository {
       return null;
     }
 
-    return new NotificationModel(lastNotification.title, lastNotification.body);
+    this.notificationModel.setTitle(lastNotification.title);
+    this.notificationModel.setBody(lastNotification.body);
+    return this.notificationModel;
   }
 }
