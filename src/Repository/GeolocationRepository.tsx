@@ -21,6 +21,7 @@ export class GeolocationRepository{
 
     async sendData(): Promise<any> {
         // Enviar los datos a GeolocationRemote
+        console.log(this.geolocationModel.getLatitude());
         const response = await this.geolocationRemote.sendData([
             {
                 latitude: this.geolocationModel.getLatitude(),
