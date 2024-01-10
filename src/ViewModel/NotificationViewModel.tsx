@@ -1,34 +1,24 @@
 import { useState, useEffect } from 'react';
 import { NotificationRepository } from '../Repository/NotificationRepository';
-import { NotificationModel } from '../Model/NotificationModel';
-
 export const useNotificationViewModel = () => {
-  const [notification, setNotification] = useState<NotificationModel | null>(null);
+  const [hasPermission, setHasPermission] = useState<boolean>(false);
   const notificationRepository = new NotificationRepository();
-  const notificationModel = NotificationModel.getInstance();
 
   useEffect(() => {
-    const registerNotifications = async () => {
+    const registerAndAddListeners = async () => {
       try {
+        console.log("call notification repository registerNotifications");
         await notificationRepository.registerNotifications();
-        setNotification(notificationModel);
+        await notificationRepository.addListeners();
+        const permission = await notificationRepository.hasPermissions();
+        setHasPermission(permission);
       } catch (error) {
         console.error(error);
       }
     };
 
-    const getDeliveredNotification = async () => {
-      try {
-        const deliveredNotification = await notificationRepository.getDeliveredNotification();
-        setNotification(deliveredNotification);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    registerAndAddListeners();
+  }, []);
 
-    registerNotifications();
-    getDeliveredNotification();
-  }, [notificationRepository]);
-
-  return { notification, token: notificationModel.token };
+  return { hasPermission };
 };

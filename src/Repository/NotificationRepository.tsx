@@ -19,6 +19,7 @@ export class NotificationRepository {
       throw new Error("User denied permissions!");
     }
 
+    console.log("PushNotifications register", permStatus.receive);
     await PushNotifications.register();
   }
   
@@ -36,6 +37,7 @@ export class NotificationRepository {
     // Listener for registration
     await PushNotifications.addListener("registration", (token) => {
       this.notificationModel.setToken(token.value);
+      console.log("my token: ", this.notificationModel.token, token.value);
       console.log("PushNotifications registration successful", token);
     });
 

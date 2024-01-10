@@ -2,18 +2,14 @@ import React from 'react';
 import { useNotificationViewModel } from "../ViewModel/NotificationViewModel";
 
 const NotificationView: React.FC = () => {
-  const { notification, token } = useNotificationViewModel();
+  const { hasPermission } = useNotificationViewModel();
 
   return (
     <div>
-      {notification ? (
-        <div>
-          <h1>{notification.title}</h1>
-          <p>{notification.body}</p>
-          <p>Token: {token}</p>
-        </div>
+      {hasPermission ? (
+        <p>Permission for notifications granted</p>
       ) : (
-        <p>No notifications</p>
+        <p>Permission for notifications not granted</p>
       )}
     </div>
   );
