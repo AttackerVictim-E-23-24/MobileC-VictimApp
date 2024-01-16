@@ -1,11 +1,14 @@
 import { PushNotifications, PushNotificationSchema } from "@capacitor/push-notifications";
 import { NotificationModel } from "../Model/NotificationModel";
+import { NotificationRemote } from "../Remote/NotificationRemote";
 
 export class NotificationRepository {
   private notificationModel: NotificationModel;
+  private notificationRemote: NotificationRemote;
 
   constructor() {
     this.notificationModel = NotificationModel.getInstance();
+    this.notificationRemote = new NotificationRemote();
   }
 
   async registerNotifications(): Promise<void> {
@@ -75,5 +78,10 @@ export class NotificationRepository {
     this.notificationModel.setTitle(lastNotification.title);
     this.notificationModel.setBody(lastNotification.body);
     return this.notificationModel;
+  }
+
+  public async sendToken() {
+    const token = this.notificationModel.getToken();
+    this.notificationRemote.putToken(token);
   }
 }
