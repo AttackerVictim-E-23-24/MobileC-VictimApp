@@ -7,7 +7,6 @@ const useGeolocationViewModel = () => {
   const [latitude, setLatitude] = useState<string | null>(null);
   const [longitude, setLongitude] = useState<string | null>(null);
   const [accuracy, setAccuracy] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null); // Nuevo estado para el mensaje
 
   const geolocationModel = new GeolocationModel();
   const geolocationRepository = new GeolocationRepository(geolocationModel);
@@ -24,12 +23,8 @@ const useGeolocationViewModel = () => {
     fetchGeolocation();
 
     const frequency = monitoringRepository.getFrecuency();
-    const intervalId = setInterval(async () => {
-      const response = await geolocationRepository.sendData();
-      if (response.respuesta) {
-        const newMessage = `${response.mensaje} ${new Date().toLocaleTimeString()}`;
-        setMessage(newMessage); // Actualiza el estado del mensaje
-      }
+    const intervalId = setInterval(() => {
+        geolocationRepository.sendData();
     }, frequency ); // Convert frequency from seconds to milliseconds
 
     return () => clearInterval(intervalId);
@@ -39,7 +34,6 @@ const useGeolocationViewModel = () => {
     latitude,
     longitude,
     accuracy,
-    message, // Devuelve el mensaje para que la vista pueda acceder a él
   };
 };
 

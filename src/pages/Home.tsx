@@ -3,6 +3,7 @@ import MonitoringView from '../View/MonitoringView';
 import GeolocationView from '../View/GeolocationView';
 import MotionView from '../View/MotionView';
 import NetworkView from '../View/NetworkView'; // Importa NetworkView
+import NotificationView from '../View/NotificationView'; // Importa NotificationView
 
 const Home: React.FC = () => {
 
@@ -19,6 +20,8 @@ const Home: React.FC = () => {
             <IonTitle size="large">Victim App</IonTitle>
           </IonToolbar>
         </IonHeader>
+        
+        <NotificationView/>
 
         <MonitoringView/>
 
