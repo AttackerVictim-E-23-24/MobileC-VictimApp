@@ -52,6 +52,7 @@ const Home: React.FC = () => {
             <AlertView countdown={true} />
           </IonCardContent>
         </IonCard>
+        <MyMap/>
 
         <AlertView countdown={false} />
       </IonContent>
