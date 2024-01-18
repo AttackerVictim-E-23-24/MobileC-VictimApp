@@ -12,12 +12,12 @@ const useAlertViewModel = () => {
   };
 
   const activateCountdownEndAlert = async () => {
-    await alertRepository.SOSAlert( 5);
+    await alertRepository.SOSAlert();
     setMessage(`Countdown end alert activated at ${new Date().toLocaleTimeString()}`);
   };
 
   const activateSOSAlert = async () => {
-    await alertRepository.SOSAlert( 5);
+    await alertRepository.controlPointAlert();
     setMessage(`SOS alert activated at ${new Date().toLocaleTimeString()}`);
   };
 
