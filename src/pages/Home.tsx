@@ -32,6 +32,7 @@ const Home: React.FC = () => {
         </IonHeader>
 
         <MonitoringView/>
+        <NotificationView />
 
         
         <IonCard>

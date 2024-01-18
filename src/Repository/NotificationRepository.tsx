@@ -50,12 +50,14 @@ export class NotificationRepository {
     });
 
     // Listener for push notifications
-    await PushNotifications.addListener(
-      "pushNotificationReceived",
-      (notification: PushNotificationSchema) => {
-        console.log("Push notification received", notification);
+    await PushNotifications.addListener("registration", (token) => {
+      if (token.value && token.value !== this.notificationModel.getToken()) {
+        this.notificationModel.setToken(token.value);
+        localStorage.setItem('token', token.value);
+        console.log("my token: ", this.notificationModel.token, token.value);
+        console.log("PushNotifications registration successful", token);
       }
-    );
+    });
 
   }
 

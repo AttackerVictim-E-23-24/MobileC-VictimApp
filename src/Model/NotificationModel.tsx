@@ -9,7 +9,7 @@ export class NotificationModel {
   private constructor(title: string, body: string) {
     this.title = title;
     this.body = body;
-    this.token = 'token';
+    this.token = localStorage.getItem('token') || 'token';
   }
 
   public static getInstance(): NotificationModel {
