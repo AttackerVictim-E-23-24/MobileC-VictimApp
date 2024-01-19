@@ -14,12 +14,6 @@ export class AlertRepository {
     this.alertRemote = new AlertRemote(); // Inicializa AlertRemote
   }
 
-  async proximityAlert(): Promise<void> {
-    if (this.monitoringModel.getMinDistance()) {
-    }
-    await Haptics.impact({ style: ImpactStyle.Medium }); // Vibración media para alertas de proximidad
-  }
-
   async SOSAlert(): Promise<void> {
     await this.alertRemote.sendSOSAlert(); // Envía la alerta SOS al servidor
   }

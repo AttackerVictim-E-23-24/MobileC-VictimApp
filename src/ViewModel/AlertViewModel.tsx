@@ -6,30 +6,19 @@ const useAlertViewModel = () => {
 
   const alertRepository = new AlertRepository();
 
-  const activateProximityAlert = async () => {
-    await alertRepository.proximityAlert();
-    setMessage(`Proximity alert activated at ${new Date().toLocaleTimeString()}`);
-  };
-
   const activateCountdownEndAlert = async () => {
-    await alertRepository.SOSAlert();
+    await alertRepository.controlPointAlert();
     setMessage(`Countdown end alert activated at ${new Date().toLocaleTimeString()}`);
   };
 
   const activateSOSAlert = async () => {
-    await alertRepository.controlPointAlert();
+    await alertRepository.SOSAlert();
     setMessage(`SOS alert activated at ${new Date().toLocaleTimeString()}`);
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      activateProximityAlert();
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
 
   return {
-    activateProximityAlert,
+    
     activateCountdownEndAlert,
     activateSOSAlert,
     message,
