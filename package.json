@@ -17,6 +17,7 @@
     "@capacitor/core": "5.5.1",
     "@capacitor/dialog": "^5.0.6",
     "@capacitor/geolocation": "^5.0.6",
+    "@capacitor/google-maps": "^5.4.0",
     "@capacitor/haptics": "^5.0.6",
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/motion": "^5.0.6",

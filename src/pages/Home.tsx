@@ -15,6 +15,7 @@ import MotionView from "../View/MotionView";
 import NetworkView from "../View/NetworkView"; // Importa NetworkView
 import AlertView from "../View/AlertView"; // Importa AlertView
 import NotificationView from '../View/NotificationView'; // Importa NotificationView
+import GoogleMapsView from "../View/GoogleMapsView";
 
 const Home: React.FC = () => {
   return (
@@ -52,9 +53,9 @@ const Home: React.FC = () => {
             <AlertView countdown={true} />
           </IonCardContent>
         </IonCard>
-        <MyMap/>
 
         <AlertView countdown={false} />
+        <GoogleMapsView />
       </IonContent>
     </IonPage>
   );

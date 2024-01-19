@@ -1,14 +1,26 @@
-import LatLng, { GoogleMap, Marker } from '@capacitor/google-maps';
+// GoogleMapsRepository.tsx
+import GoogleMapsRemote from '../Remote/GoogleMapsRemote';
+import GoogleMapsModel from '../Model/GoogleMapsModel';
+import { GoogleMap } from '@capacitor/google-maps';
 import { GeolocationRepository } from './GeolocationRepository';
 import { GeolocationModel } from '../Model/GeolocationModel';
 
-export class GoogleMapsRepository {
+class GoogleMapsRepository {
   private newMap: GoogleMap|null = null;
+  private remote: GoogleMapsRemote;
+  private model: GoogleMapsModel;
   private geolocationRepository: GeolocationRepository;
   private geolocationModel: GeolocationModel;
+
   constructor() {
     this.geolocationModel = new GeolocationModel();
     this.geolocationRepository = new GeolocationRepository(this.geolocationModel);
+    this.remote = new GoogleMapsRemote();
+    this.model = new GoogleMapsModel();
+  }
+
+  getMap() {
+    return this.newMap;
   }
 
   async createMap(mapRef: React.RefObject<HTMLElement>) {
@@ -19,7 +31,7 @@ export class GoogleMapsRepository {
     this.newMap = await GoogleMap.create({
       id: 'my-cool-map',
       element: mapRef.current,
-      apiKey: 'AIzaSyCccZNiLlQVuUUN__qwtUC5GdpJveXQ1s8',
+      apiKey: 'AIzaSyAVCv2edVHkkor2XENUBSsamIXFgMFn8UM',
       config: {
         center: {
           lat: latitude,
@@ -31,14 +43,22 @@ export class GoogleMapsRepository {
 
     this.newMap.enableCurrentLocation(true);
 
-    if (this.newMap) {
-        this.newMap.addMarker({
-            coordinate:{
-            lat: 1,
-            lng: longitude
-          },
-          title: 'My Location'
-        });
-      }
   }
+
+  async fetchZonesAndPoints() {
+    const zones = await this.remote.fetchZones();
+
+    for (let zone of zones) {
+      if (zone.activo) {
+        const points = await this.remote.fetchPointsForZone(zone.id);
+        this.model.addZones(zone.id);
+        this.model.addPointsToZone(zone.id, points);
+      }
+    }
+
+    return this.model.getZones();
+  }
+
 }
+
+export default GoogleMapsRepository;
