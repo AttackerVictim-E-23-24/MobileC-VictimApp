@@ -25,7 +25,7 @@ const useMonitoringViewModel = () => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 3 * 60 * 60 * 1000); // Fetch data every 3 hours
+    const intervalId = setInterval(fetchData, 1000*60*3); // Fetch data every 3 hours
 
     return () => clearInterval(intervalId); // Clean up on unmount
   }, []);
