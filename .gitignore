@@ -31,3 +31,4 @@ yarn-error.log*
 # Ignorar archivos y carpetas relacionados con msw
 /src/mocks
 
+src/Repository/API_KEY.tsx
